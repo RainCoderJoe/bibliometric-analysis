@@ -312,7 +312,6 @@ authors_gen %>%
   ungroup() %>%
   mutate(gender_rec = reorder(gender_rec, n)) %>%
   ggplot(aes(gender_rec, n, label = n)) +
-  #geom_col(fill = c("#00BFC4", "#F8766D", "grey"), alpha = 0.9) + # instead of geom_segment & geom_point
   geom_segment(aes(x = gender_rec, 
                    xend = gender_rec, 
                    y = 0, 
@@ -331,7 +330,6 @@ authors_first_gen %>%
   ungroup() %>%
   mutate(gender_rec = reorder(gender_rec, n)) %>%
   ggplot(aes(gender_rec, n, label = n)) +
-  #geom_col(fill = c("#00BFC4", "#F8766D", "grey"), alpha = 0.9) + # instead of geom_segment & geom_point
   geom_segment(aes(x = gender_rec, 
                    xend = gender_rec, 
                    y = 0, 
@@ -350,7 +348,6 @@ authors_last_gen %>%
   ungroup() %>%
   mutate(gender_rec = reorder(gender_rec, n)) %>%
   ggplot(aes(gender_rec, n, label = n)) +
-  #geom_col(fill = c("#00BFC4", "#F8766D", "grey"), alpha = 0.9) + # instead of geom_segment & geom_point
   geom_segment(aes(x = gender_rec, 
                    xend = gender_rec, 
                    y = 0, 
@@ -375,7 +372,6 @@ pub_ts <- bib_df %>%
 # Plot timeline
 ggplot(pub_ts, aes(PY, n)) + geom_point(col = "grey") + 
   geom_line(col = "grey", size = 1) +
-  #facet_wrap(~channelTitle, scales = "free_y", ncol = 2) +
   labs(x = "Year", y = "Count", title = "Number of publications over time", subtitle = " ") +
   scale_x_continuous(breaks = seq(1998, 2018)) + 
   theme(text = element_text(size = 20)) + 
@@ -397,7 +393,6 @@ pub_gen_ts <- bib_df %>%
 ggplot(pub_gen_ts, aes(PY, n, color = FA_gen_rec)) + geom_point() + 
   geom_line(size = 1) +
   scale_color_manual(values = c(female = "#F8766D", male = "#00BFC4", unknown = "grey"), name = "Gender") +
-  #facet_wrap(~FA_gen, scales = "free_y", ncol = 2) +
   labs(x = "Year", y = "Count", title = "Number of publications over time by first author's gender", subtitle = " ") +
   scale_x_continuous(breaks = seq(1998, 2018)) + 
   theme(text = element_text(size = 20)) + 
@@ -419,7 +414,6 @@ pub_gen_ts <- bib_df %>%
 ggplot(pub_gen_ts, aes(PY, n, color = LA_gen_rec)) + geom_point() + 
   geom_line(size = 1) +
   scale_color_manual(values = c(female = "#F8766D", male = "#00BFC4", unknown = "grey"), name = "Gender") + # , guide = "none"
-  #facet_wrap(~LA_gen, scales = "free_y", ncol = 2) +
   labs(x = "Year", y = "Count", title = "Number of publications over time by last author's gender", subtitle = " ") +
   scale_x_continuous(breaks = seq(1998, 2018)) + 
   theme(text = element_text(size = 20)) + 
@@ -440,7 +434,6 @@ cit_ts <- bib_df %>%
 # Plot timeline
 ggplot(cit_ts, aes(PY, Freq)) + geom_point(col = "grey") + 
   geom_line(col = "grey", size = 1) +
-  #facet_wrap(~channelTitle, scales = "free_y", ncol = 2) +
   labs(x = "Year", y = "Count", title = "Number of citations over time", subtitle = " ") +
   scale_x_continuous(breaks = seq(1998, 2018)) + 
   theme(text = element_text(size = 20)) + 
@@ -457,7 +450,6 @@ cit_gen_ts <- bib_df %>%
 ggplot(cit_gen_ts, aes(PY, Freq, color = FA_gen_rec)) + geom_point() + 
   geom_line(size = 1) +
   scale_color_manual(values = c(female = "#F8766D", male = "#00BFC4", unknown = "grey"), name = "Gender") +
-  #facet_wrap(~FA_gen, scales = "free_y", ncol = 2) +
   labs(x = "Year", y = "Count", title = "Number of citations over time by first author's gender", subtitle = " ") +
   scale_x_continuous(breaks = seq(1998, 2018)) + 
   theme(text = element_text(size = 20)) + 
@@ -474,7 +466,6 @@ cit_gen_ts <- bib_df %>%
 ggplot(cit_gen_ts, aes(PY, Freq, color = LA_gen_rec)) + geom_point() + 
   geom_line(size = 1) +
   scale_color_manual(values = c(female = "#F8766D", male = "#00BFC4", unknown = "grey"), name = "Gender") + # , guide = "none"
-  #facet_wrap(~LA_gen, scales = "free_y", ncol = 2) +
   labs(x = "Year", y = "Count", title = "Number of citations over time by last author's gender", subtitle = " ") +
   scale_x_continuous(breaks = seq(1998, 2018)) + 
   theme(text = element_text(size = 20)) + 
@@ -573,7 +564,6 @@ dev.off()
 #-----------------#
 
 # Extract edges and split string
-#coop_gen <- data.frame(as_ids(E(g)[inc(V(g)[gender == "female"])]))
 coop_gen <- data.frame(as_ids(E(g)))
 colnames(coop_gen) <- "AUs"
 coop_gen <- colsplit(coop_gen$AUs, "\\|", c("AU_1", "AU_2"))
@@ -599,7 +589,6 @@ coop_gen %>%
   ungroup() %>%
   mutate(type = reorder(type, n)) %>%
   ggplot(aes(type, n, label = n)) +
-  #geom_col(fill = c("#00BFC4", "black", "grey", "#F8766D"), alpha = 0.9) + # instead of geom_segment & geom_point
   geom_segment(aes(x = type, 
                    xend = type, 
                    y = 0, 
